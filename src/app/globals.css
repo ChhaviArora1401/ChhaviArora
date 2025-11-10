@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+/* ---------------------------------------------
+   ✅ GLOBAL RESET (safe + Tailwind 4 compatible)
+--------------------------------------------- */
+html {
+  box-sizing: border-box;
+  @apply transition-colors duration-300;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  @apply bg-white text-zinc-900 transition-colors duration-300;
+}
+
+
+.btnfill {
+  font-size: 1.35rem;
+  font-weight: 700;
+  padding: 18px 60px;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s ease-in-out;
+  
+  /* Inherit light/dark mode properly */
+  @apply bg-white text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100;
+}
+
+header {
+  position: absolute;
+  background-color: transparent;
+}
+
+/* ---------------------------------------------
+   ✅ NAVIGATION STYLES (unchanged)
+--------------------------------------------- */
+.menu-btn-container {
+  position: fixed;
+  width: 100%;
+  top: var(--gutter-x-small);
+  left: 0;
+  z-index: 4;
+}
+
+.menu-btn {
+  display: block;
+  margin-left: auto;
+  border: 1px solid var(--border-dark);
+  width: 132px;
+  padding-block: var(--gutter-nano);
+  border-radius: var(--gutter-large);
+  background-color: var(--bg-color-secondary);
+  color: var(--important);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu-btn,
+.nav-items a {
+  font-stretch: 125%;
+  font-weight: 900;
+}
+
+.nav {
+  position: fixed;
+  inset: 0;
+  background-image: var(--gradient-brand);
+  transition: 450ms var(--easing);
+  z-index: 3;
+}
+
+.nav-items {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-15%, -50%);
+  list-style: none;
+}
+
+.nav-item:not(:last-child) {
+  margin-bottom: var(--gutter-x-small);
+}
+
+.nav-item a {
+  font-size: var(--h2);
+  text-decoration: none;
+  color: #fff;
+}
+
+.about,
+.exp,
+.works,
+.skills,
+.contact {
+  min-height: 60vh;
+}
+
+.lock-screen {
+  overflow: hidden;
+}
+
+@layer utilities {
+  @keyframes fadeUp {
+    0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .fade-up {
+    animation: fadeUp 0.8s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.skill-hover {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.4s ease;
+}
+
+.skill-hover:hover .skill-icon {
+  opacity: 1;
+  transform: translateY(-8px);
+}
+
+.skill-hover:hover .skill-name {
+  opacity: 1;
+}
